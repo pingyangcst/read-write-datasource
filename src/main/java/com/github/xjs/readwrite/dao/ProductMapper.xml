@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.xjs.readwrite.dao.ProductMapper">
+
+    <select id="selectById" resultType="com.github.xjs.readwrite.domain.Product">
+        select * from product
+        where id=#{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.github.xjs.readwrite.domain.Product">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="prodName != null">prod_name,</if>
+            <if test="prodTitle != null">prod_title,</if>
+            <if test="prodPrice != null">prod_price,</if>
+            <if test="prodDetail != null">prod_detail,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="prodName != null">#{prodName},</if>
+            <if test="prodTitle != null">#{prodTitle},</if>
+            <if test="prodPrice != null">#{prodPrice},</if>
+            <if test="prodDetail != null">#{prodDetail},</if>
+        </trim>
+    </insert>
+
+</mapper>

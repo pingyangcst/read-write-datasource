@@ -1,0 +1,31 @@
+
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://192.168.1.25:3306/demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    slave1:
+      jdbc-url: jdbc:mysql://192.168.1.25:3306/demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+      username: user1   # 只读账户
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    slave2:
+      jdbc-url: jdbc:mysql://192.168.1.25:3306/demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+      username: user2   # 只读账户
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 8
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:com/github/xjs/readwrite/dao/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+# CREATE USER 'user1'@'%' IDENTIFIED BY '123456';
+# GRANT all ON demo.* TO 'user1'@'%';
